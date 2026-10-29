@@ -1,0 +1,353 @@
+{
+  "profile": "model-side-historical-inference",
+  "models": {
+    "Instant": {
+      "name": "Instant",
+      "model_id": "StartLux-Decision-v1.1-27B-Instant",
+      "adapter": "startlux_http",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": false,
+      "historical_protocol_sha256": "1a57dd7acce5ff2f8666bd5c25660c6564d4d238d667bc0fa4748a2cafbc6a7f",
+      "endpoint": "${INSTANT_ENDPOINT}",
+      "expected_returned_models": [
+        "StartLux-Decision-v1.1-27B-Instant"
+      ],
+      "checkpoint": "${INSTANT_CHECKPOINT}",
+      "revision": "32e7d35d74db615c4a059181efbf21c5421f3561",
+      "identity_sha256": {
+        "config.json": "fb4bbaf0e92a82a4984e109b938085cedb2ac2491e082ee711039be315f84527",
+        "decision_config.json": "42453cbf44b01c48d26284af1200181d3122074c5c119c052d7ad56817010663"
+      },
+      "profile": "evaluated",
+      "settings": {
+        "concurrency": 1,
+        "timeout_seconds": 900,
+        "transport_retries": 1,
+        "max_input_tokens": 65536,
+        "truncation": "forbidden",
+        "dtype": "bfloat16",
+        "temperature_by_kind": {
+          "noul": 1.7238,
+          "choice": 1.0867,
+          "score": 1.1841
+        },
+        "think_mode": "never",
+        "gate": 0.9,
+        "think_budget": 4096,
+        "mix": 0.75,
+        "allow_none": false,
+        "none_check": true
+      },
+      "controls": {
+        "think_mode": "never",
+        "gate": 0.9,
+        "think_budget": 4096,
+        "mix": 0.75,
+        "allow_none": false,
+        "none_check": true
+      },
+      "source_commit": "cb1d11f1ac9e9b43b95ef3a6468fa29b607c40fd",
+      "runtime_versions": {
+        "vllm": "0.19.1",
+        "torch": "2.10.0",
+        "transformers": "5.20.0"
+      },
+      "routing_model": "Instant",
+      "service_backend": "startlux_http"
+    },
+    "OneShot": {
+      "name": "OneShot",
+      "model_id": null,
+      "adapter": "systemone_http",
+      "timeout_seconds": 900,
+      "transport_retries": 2,
+      "retry_delay_seconds": 2,
+      "compact_json": true,
+      "historical_protocol_sha256": "660dab2f601bdc9913e3b8ac99443315ffc563cb63fe478d11ac2555908ab6ec",
+      "endpoint": "${ONESHOT_HARD_ENDPOINT}",
+      "expected_returned_models": [
+        "jev-policy"
+      ],
+      "rendering": "oneshot_hard",
+      "checkpoint_revision": "R3-S02-a01",
+      "hard_backend": "PPU vLLM custom bidirectional_prompt",
+      "soft_backend": "HF Torch SDPA + FLA",
+      "splits": {
+        "soft": {
+          "endpoint": "${ONESHOT_SOFT_ENDPOINT}",
+          "rendering": "oneshot",
+          "controls": {},
+          "service_backend": "hf-sdpa-fla-external"
+        }
+      },
+      "attention": "bidirectional_prompt",
+      "probability_temperature": 1,
+      "max_context": 65536,
+      "controls": {
+        "enable_thinking": false
+      },
+      "hard_deployment_note": "Historical PPU run used eight TP1 replicas and length buckets (16/1/1 concurrency). This generic client sends one request at a time per endpoint; an equivalent external PPU deployment and scheduler are not bundled, and throughput is not compared.",
+      "historical_hard_parallelism": {
+        "TP1_replicas": 8,
+        "short_concurrency_per_replica": 16,
+        "medium_concurrency_per_replica": 1,
+        "long_concurrency_per_replica": 1
+      },
+      "routing_model": "OneShot",
+      "service_backend": "historical-ppu-vllm-external"
+    },
+    "JEV1.14": {
+      "name": "JEV1.14",
+      "model_id": "typesafe/jev-1.14",
+      "adapter": "http_decisions",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "historical_protocol_sha256": "3c026e90662bb794012bb32a04dd06ded06697d09a3080ce534e5d23ff696c5a",
+      "endpoint": "https://openrouter.ai/api/alpha/decisions",
+      "key_env": "OPENROUTER_API_KEY",
+      "expected_returned_models": [
+        "typesafe/jev-1.14-20261014"
+      ],
+      "profile": "evaluated",
+      "settings": {
+        "concurrency": 1,
+        "max_input_tokens": null,
+        "seed": "provider_controlled",
+        "temperature": "provider_controlled",
+        "truncation": "forbidden",
+        "calibration": "provider_controlled",
+        "dtype": "provider_controlled",
+        "attn_implementation": "provider_controlled",
+        "timeout_seconds": 900,
+        "transport_retries": 1
+      },
+      "splits": {
+        "hard": {}
+      },
+      "registry_default_concurrency": 1,
+      "concurrency_note": "Actual historical Hard protocol used concurrency=4, overriding the registry default=1; Soft used concurrency=1.",
+      "routing_model": "JEV1.14",
+      "service_backend": "http_decisions"
+    },
+    "strands-decider-26B-A4B-gemma4-v1-2610": {
+      "name": "strands-decider-26B-A4B-gemma4-v1-2610",
+      "model_id": null,
+      "adapter": "strands",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "historical_protocol_sha256": "0d773b68caba83477ad12998404d071ae3f53e3330ebebcc01d487a26695dfb8",
+      "checkpoint": "${STRANDS_CHECKPOINT}",
+      "base_checkpoint": "${STRANDS_BASE_CHECKPOINT}",
+      "base_revision": null,
+      "revision": "3ca5dfe2d5aa758ae162b6249729181f1d13ed65",
+      "identity_sha256": {
+        "tokenizer.json": "30383f3ce90a169cbabe9eb3da7bb77988bf906aad2e59184b378f5470ec4dbd",
+        "strands_decider_config.json": "c9d2d08ce11ba1e07c33069d1fa4494384797c981f076fc69ba563dfd3ef6dc3",
+        "head.safetensors": "026c2b5fdc76582470674ed444aa464ab6d963fba40fe72f41055bb09ab4f119"
+      },
+      "profile": "evaluated",
+      "settings": {
+        "concurrency": 1,
+        "max_input_tokens": 65535,
+        "seed": 20261009,
+        "temperature": 1.0,
+        "truncation": "forbidden",
+        "calibration": "disabled",
+        "dtype": "bfloat16",
+        "attn_implementation": "sdpa",
+        "timeout_seconds": 900,
+        "transport_retries": 1,
+        "temperature_by_kind": {}
+      },
+      "seed": 20261009,
+      "source_paths": [
+        "${STRANDS_IMPLEMENTATION_PATH}"
+      ],
+      "id": "strands-decider-26B-A4B-gemma4-v1-2610",
+      "routing_model": "strands-decider-26B-A4B-gemma4-v1-2610",
+      "service_backend": "strands"
+    },
+    "Clef-27B-original": {
+      "name": "Clef-27B-original",
+      "model_id": null,
+      "adapter": "clef",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "historical_protocol_sha256": "53fd8774ead3dd4278e4989c44e00e47dff35d25de3617ab28c1ba70bee24d0b",
+      "checkpoint": "${CLEF_CHECKPOINT}",
+      "identity_sha256": {
+        "config.json": "c42e88892bd3fd84e8276b2ad90df58c1c3b797676ea161035006a72ad468c58",
+        "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+        "joint_head_config.json": "890be585d75b981201eb96a35f98a9967afe37bc8d220cfdea2e72d56507534f",
+        "joint_schema_model.py": "0e304cf7c6500e8bb59bef7e2afd2c6373f82596dfb3b57d1aa93c175e2dc3a3"
+      },
+      "profile": "evaluated",
+      "settings": {
+        "concurrency": 1,
+        "max_input_tokens": 65535,
+        "seed": 20261009,
+        "temperature": 1.0,
+        "truncation": "forbidden",
+        "calibration": "not_applicable",
+        "dtype": "bfloat16",
+        "attn_implementation": "sdpa",
+        "timeout_seconds": 900,
+        "transport_retries": 1
+      },
+      "seed": 20261009,
+      "routing_model": "Clef-27B-original",
+      "service_backend": "clef"
+    },
+    "microsoft/microsoft-decision-1": {
+      "name": "microsoft/microsoft-decision-1",
+      "model_id": "microsoft/microsoft-decision-1",
+      "adapter": "http_decisions",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "historical_protocol_sha256": "08aa305b052585887c0a2c9f1ea612a7e5c3a98da7639d4fba21c9fde01a9f17",
+      "endpoint": "https://openrouter.ai/api/alpha/decisions",
+      "key_env": "OPENROUTER_API_KEY",
+      "expected_returned_models": [
+        "microsoft/microsoft-decision-1-20261009"
+      ],
+      "profile": "evaluated",
+      "settings": {
+        "concurrency": 1,
+        "max_input_tokens": null,
+        "seed": "provider_controlled",
+        "temperature": "provider_controlled",
+        "truncation": "forbidden",
+        "calibration": "provider_controlled",
+        "dtype": "provider_controlled",
+        "attn_implementation": "provider_controlled",
+        "timeout_seconds": 900,
+        "transport_retries": 1
+      },
+      "splits": {
+        "hard": {}
+      },
+      "registry_default_concurrency": 1,
+      "concurrency_note": "Actual historical Hard protocol used concurrency=4, overriding the registry default=1; Soft used concurrency=1.",
+      "routing_model": "microsoft/microsoft-decision-1",
+      "service_backend": "http_decisions"
+    },
+    "inception/mercury-decide": {
+      "name": "inception/mercury-decide",
+      "model_id": "inception/mercury-decide",
+      "adapter": "http_decisions",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "historical_protocol_sha256": "6eda6fc3f03b03acc52a0442f1be02fdb034dba9c54a57a205dcd8469d7dbae1",
+      "endpoint": "https://openrouter.ai/api/alpha/decisions",
+      "key_env": "OPENROUTER_API_KEY",
+      "expected_returned_models": [
+        "inception/mercury-decide-20260930"
+      ],
+      "profile": "evaluated",
+      "settings": {
+        "concurrency": 1,
+        "max_input_tokens": null,
+        "seed": "provider_controlled",
+        "temperature": "provider_controlled",
+        "truncation": "forbidden",
+        "calibration": "provider_controlled",
+        "dtype": "provider_controlled",
+        "attn_implementation": "provider_controlled",
+        "timeout_seconds": 900,
+        "transport_retries": 1
+      },
+      "splits": {
+        "hard": {}
+      },
+      "registry_default_concurrency": 1,
+      "concurrency_note": "Actual historical Hard protocol used concurrency=4, overriding the registry default=1; Soft used concurrency=1.",
+      "routing_model": "inception/mercury-decide",
+      "service_backend": "http_decisions"
+    },
+    "openai/gpt-6-luna-decisions": {
+      "name": "openai/gpt-6-luna-decisions",
+      "model_id": "openai/gpt-6-luna-decisions",
+      "adapter": "http_decisions",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "historical_protocol_sha256": "8146947abaf416cebff36cfc01fe2e0c22ef7515b92621645b481449dee9ce15",
+      "endpoint": "https://openrouter.ai/api/alpha/decisions",
+      "key_env": "OPENROUTER_API_KEY",
+      "expected_returned_models": [
+        "openai/gpt-6-luna-decisions-20261006"
+      ],
+      "profile": "evaluated",
+      "settings": {
+        "concurrency": 1,
+        "max_input_tokens": null,
+        "seed": "provider_controlled",
+        "temperature": "provider_controlled",
+        "truncation": "forbidden",
+        "calibration": "provider_controlled",
+        "dtype": "provider_controlled",
+        "attn_implementation": "provider_controlled",
+        "timeout_seconds": 900,
+        "transport_retries": 1
+      },
+      "splits": {
+        "hard": {}
+      },
+      "registry_default_concurrency": 1,
+      "concurrency_note": "Actual historical Hard protocol used concurrency=4, overriding the registry default=1; Soft used concurrency=1.",
+      "routing_model": "openai/gpt-6-luna-decisions",
+      "service_backend": "http_decisions"
+    },
+    "vllm-sr/d3": {
+      "name": "vllm-sr/d3",
+      "model_id": null,
+      "adapter": "d3",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "historical_protocol_sha256": "fd81c926d007b43f9e07f6e568a526b3a1afcaf97201558a89216e5ae0b17ea5",
+      "checkpoint": "${D3_CHECKPOINT}",
+      "revision": "cf15549a78fc52598ddd1951f321c58372bbd64f",
+      "calibration": "native checkpoint default",
+      "max_context": 65536,
+      "cpu_threads": 4,
+      "routing_model": "vllm-sr/d3",
+      "service_backend": "d3"
+    },
+    "perplexity-ai/pplx-decider-v1.2": {
+      "name": "perplexity-ai/pplx-decider-v1.2",
+      "model_id": null,
+      "adapter": "pplx",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "historical_protocol_sha256": "d496838feb39f05cd447a381355a64e259c7b5d05c941be3fc526e8673e6f890",
+      "checkpoint": "${PPLX_CHECKPOINT}",
+      "revision": "cce0f3f80033e9d89d80831d5281fd72124aacce",
+      "calibration": "native checkpoint default",
+      "max_context": 65536,
+      "cpu_threads": 4,
+      "routing_model": "perplexity-ai/pplx-decider-v1.2",
+      "service_backend": "pplx"
+    }
+  },
+  "notes": [
+    "Model execution lives here, separately from the Benchmark. Resolve paths and start each service in its own model environment.",
+    "Hard/Soft are deployment profiles only, never inferred from benchmark labels. HTTP gateways perform no internal retries; the Benchmark owns transport retry policy."
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "benchmark": "HarnessJevBench",
+  "benchmark_version": "0.5",
+  "release_version": "0.5.15",
+  "frozen_at": "2026-10-22",
+  "published_format_at": "2026-10-26",
+  "record_format": "harnessjevbench.public.v1",
+  "revision_note": "Replaces the retired OneShot leaderboard row with Blink-4B-1028, Blink-9B-1028 and Blink-27B-1028 measured on 2026-10-28. Preserves the other nine historical model rows and updates bilingual results, deployment scope and optional twelve-model replay bundle. Frozen tasks/scorer, inference and model-service implementations remain unchanged; unpublished local model integration changes are excluded.",
+  "source_records_sha256": "b07fa655d9a0083d72519b390b0b806d3b247c3d7093e29c74190e3567728aaa",
+  "records_sha256": "470b1e53b89049f34b801522d3354d573aa19cd876bd965f266c0e0656fd9768",
+  "algorithm": "sha256",
+  "files": {
+    ".github/workflows/validate.yml": "90525eec9d19414036adf41f6467eb2c4a3c9b3c6f03f76386292e474b176442",
+    ".gitignore": "0ab1160a5d0494b49bf28905926df5533ddb26383c8b337730f326ddfdc21d03",
+    "LICENSE.md": "540df6cec1e0e311540bc758069c6423edbaa173ee2227eac2a604b01dbc89bd",
+    "README.md": "0fe532ec9b695b075bbe3e5ac370efbd871d8a957858d5c190ca803dd10ab5e4",
+    "README.zh-CN.md": "cb71e42f38e51ddeebbb2acd5ee5575253dd315357877510d81f7dbdd50c5980",
+    "assets/coverage.en.svg": "489ebec08bfb369b20e39561013c934ade18779fafbc56a584db92b1a68fbde7",
+    "assets/coverage.zh-CN.svg": "474ce1dbbd410ec5f1c241e371eff29d8306786ba08fbf555cda7e456e83e72f",
+    "benchmark/records.jsonl": "470b1e53b89049f34b801522d3354d573aa19cd876bd965f266c0e0656fd9768",
+    "configs/models.json": "22a19fbb5b95b8b39657c9f78e46fbfd137d4436726b5525deb26e8da7bb5224",
+    "evaluation/__main__.py": "c591e1b918e619872e0f2437a8c5e9e22da8fd4328a493a1641f59f13eea3ccb",
+    "evaluation/inference.py": "c1e417998aa562e2b613b309520e609920e1aa5c8f77144c8a7b6d6b02a79947",
+    "evaluation/scoring.py": "fc356e4d9c924c848a22fa415c0af22deab70c4a837df24c4b1ea5d67d11323b",
+    "examples/model-services/systemone_services/__main__.py": "32cf4612de412bb6ed5eb17db8b3038acbdbd90defb809969d6dac6a9c2d2195",
+    "examples/model-services/systemone_services/adapters.py": "844ffdb8881aae174bb931edb99ce78bc09c12f8ab9379063407ff1f8c3dea85",
+    "examples/model-services/systemone_services/engine.py": "684c67e44330e2114c838f100085d694ac6e51d90cabb73315efbf021bd74880",
+    "examples/model-services/systemone_services/profiles.json": "2ce695dbab15ace85bca2679ecb0249f801f1fc22e4fe91846bb1e746b645ced",
+    "results/leaderboard.json": "42bab4c13aac3e83df12fb9e9610b1425bf0eb09d054bb6d3247f1af2386713e",
+    "skills/harnessjevbench-eval/SKILL.md": "5f54f88b7b8194cbd0d6a437f70faf209a98a933de6d6c8e70656b4b1a6541e2",
+    "skills/harnessjevbench-eval/references/deployment.md": "f8ae3f5eb015eeaff348fe40b82cf637bb06091295bbbb0e8fbf3c835e4e94e0",
+    "skills/harnessjevbench-eval/references/reproducibility.md": "45fe3d07bd417374558121a2eb2c32822b523ae9224fd245c3342885fc9567b1",
+    "tests/test_inference.py": "8586ab2b0ee0695bda8ef4cbbeeee83130fc39e0bcac8ad48670c7de220efcde",
+    "tests/test_model_services.py": "9957f425efa35fc6bf286ff325e2157ddf6bb168bb9c6ed8622423ff34c8fc66",
+    "tests/test_python_engine.py": "722f257c99d3cba14eace724d717c23e8e554654816e6d96279905abb1cba5f5",
+    "tests/test_release.py": "759583fc0401b0fddab11fe4b6bcf095e671e1e2c36cb150856c757095c67fbc"
+  },
+  "external_artifacts": {
+    "historical_predictions": {
+      "archive": "HarnessJevBench-predictions-v0.5-12models.zip",
+      "extracted_file": "HarnessJevBench-predictions-v0.5-12models/predictions.jsonl",
+      "predictions_sha256": "2aefb8b2c92603806f0b276acbd250740380aed8cc352fc61188d98f14e6a555",
+      "benchmark_version": "0.5",
+      "models": 12
+    }
+  }
+}

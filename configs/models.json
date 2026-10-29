@@ -1,0 +1,177 @@
+{
+  "profile": "http-default-with-optional-model-owned-python-engines",
+  "example_notes": [
+    "Example localhost endpoints; launch the corresponding model-owned service first.",
+    "All prompt rendering, model controls and calibration live in the model service.",
+    "OneShot Hard uses port 8001; Soft uses 8011 to preserve backend separation. Hard PPU availability is not implied.",
+    "The default engine is http. External Python engines use engine=module:Class with options/module_paths; see the evaluation skill."
+  ],
+  "models": {
+    "OneShot": {
+      "name": "OneShot",
+      "timeout_seconds": 900,
+      "transport_retries": 2,
+      "retry_delay_seconds": 2,
+      "compact_json": true,
+      "expected_returned_models": [
+        "jev-policy"
+      ],
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8001/v1/systemone",
+      "model_id": "OneShot",
+      "concurrency": 1,
+      "splits": {
+        "soft": {
+          "endpoint": "http://127.0.0.1:8011/v1/systemone",
+          "expected_returned_models": [
+            "jev-policy"
+          ]
+        }
+      },
+      "engine": "http"
+    },
+    "vllm-sr/d3": {
+      "name": "vllm-sr/d3",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8002/v1/systemone",
+      "model_id": "vllm-sr/d3",
+      "concurrency": 1,
+      "engine": "http"
+    },
+    "Instant": {
+      "name": "Instant",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": false,
+      "expected_returned_models": [
+        "StartLux-Decision-v1.1-27B-Instant"
+      ],
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8003/v1/systemone",
+      "model_id": "StartLux-Decision-v1.1-27B-Instant",
+      "concurrency": 1,
+      "engine": "http"
+    },
+    "perplexity-ai/pplx-decider-v1.2": {
+      "name": "perplexity-ai/pplx-decider-v1.2",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8004/v1/systemone",
+      "model_id": "perplexity-ai/pplx-decider-v1.2",
+      "concurrency": 1,
+      "engine": "http"
+    },
+    "inception/mercury-decide": {
+      "name": "inception/mercury-decide",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "expected_returned_models": [
+        "inception/mercury-decide-20260930"
+      ],
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8005/v1/systemone",
+      "model_id": "inception/mercury-decide",
+      "concurrency": 1,
+      "splits": {
+        "hard": {
+          "concurrency": 4
+        }
+      },
+      "engine": "http"
+    },
+    "JEV1.14": {
+      "name": "JEV1.14",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "expected_returned_models": [
+        "typesafe/jev-1.14-20261014"
+      ],
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8006/v1/systemone",
+      "model_id": "typesafe/jev-1.14",
+      "concurrency": 1,
+      "splits": {
+        "hard": {
+          "concurrency": 4
+        }
+      },
+      "engine": "http"
+    },
+    "openai/gpt-6-luna-decisions": {
+      "name": "openai/gpt-6-luna-decisions",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "expected_returned_models": [
+        "openai/gpt-6-luna-decisions-20261006"
+      ],
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8007/v1/systemone",
+      "model_id": "openai/gpt-6-luna-decisions",
+      "concurrency": 1,
+      "splits": {
+        "hard": {
+          "concurrency": 4
+        }
+      },
+      "engine": "http"
+    },
+    "microsoft/microsoft-decision-1": {
+      "name": "microsoft/microsoft-decision-1",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "expected_returned_models": [
+        "microsoft/microsoft-decision-1-20261009"
+      ],
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8008/v1/systemone",
+      "model_id": "microsoft/microsoft-decision-1",
+      "concurrency": 1,
+      "splits": {
+        "hard": {
+          "concurrency": 4
+        }
+      },
+      "engine": "http"
+    },
+    "Clef-27B-original": {
+      "name": "Clef-27B-original",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8009/v1/systemone",
+      "model_id": "Clef-27B-original",
+      "concurrency": 1,
+      "engine": "http"
+    },
+    "strands-decider-26B-A4B-gemma4-v1-2610": {
+      "name": "strands-decider-26B-A4B-gemma4-v1-2610",
+      "timeout_seconds": 900,
+      "transport_retries": 1,
+      "retry_delay_seconds": 1,
+      "compact_json": true,
+      "adapter": "systemone_http",
+      "endpoint": "http://127.0.0.1:8010/v1/systemone",
+      "model_id": "strands-decider-26B-A4B-gemma4-v1-2610",
+      "concurrency": 1,
+      "engine": "http"
+    }
+  }
+}
