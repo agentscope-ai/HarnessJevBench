@@ -11,6 +11,7 @@
   <a href="results/leaderboard.json"><img alt="evaluated models" src="https://img.shields.io/badge/evaluated_models-12-0969da"></a>
   <a href="https://decisionplayground.agentscope.io/"><img alt="leaderboard" src="https://img.shields.io/badge/leaderboard-live-cf222e"></a>
   <a href="https://github.com/agentscope-ai"><img alt="AgentScope" src="https://img.shields.io/badge/team-AgentScope-0969da?logo=github"></a>
+  <a href="https://github.com/agentscope-ai/OpenJudge"><img alt="OpenJudge" src="https://img.shields.io/badge/related_project-OpenJudge-0969da?logo=github"></a>
   <a href="LICENSE.md#benchmark-data--mit"><img alt="data license" src="https://img.shields.io/badge/data_license-MIT-blue"></a>
 </p>
 
@@ -35,6 +36,9 @@
 Jev 类模型可以根据给定状态，为候选动作或判断输出选择与概率。将它们接入 Harness，需要了解模型能否依据运行状态、工具回执和执行约束，选对工具、分配资源、检查执行条件，以及判断何时继续或结束任务。
 
 [AgentScope](https://github.com/agentscope-ai) 团队构建 HarnessJevBench，希望回答：**现有 Jev 类模型在哪些 Harness 决策环节表现较好，哪些环节仍容易出错？** Benchmark 围绕这些控制判断选择决策环境，在相同输入和评分规则下比较模型，为选择模型及其接入环节提供依据。
+
+> [!NOTE]
+> 如需评估智能体轨迹、工具调用与回答质量，或构建自定义评测器和质量奖励信号，欢迎使用我们团队的 [OpenJudge](https://github.com/agentscope-ai/OpenJudge) 开源框架。
 
 ## HarnessJevBench Design
 

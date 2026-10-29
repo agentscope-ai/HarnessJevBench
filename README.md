@@ -11,6 +11,7 @@
   <a href="results/leaderboard.json"><img alt="evaluated models" src="https://img.shields.io/badge/evaluated_models-12-0969da"></a>
   <a href="https://decisionplayground.agentscope.io/"><img alt="leaderboard" src="https://img.shields.io/badge/leaderboard-live-cf222e"></a>
   <a href="https://github.com/agentscope-ai"><img alt="AgentScope" src="https://img.shields.io/badge/team-AgentScope-0969da?logo=github"></a>
+  <a href="https://github.com/agentscope-ai/OpenJudge"><img alt="OpenJudge" src="https://img.shields.io/badge/related_project-OpenJudge-0969da?logo=github"></a>
   <a href="LICENSE.md#benchmark-data--mit"><img alt="data license" src="https://img.shields.io/badge/data_license-MIT-blue"></a>
 </p>
 
@@ -35,6 +36,9 @@
 Jev-style models take a supplied state and return choices and probabilities over candidate answers. To use them in a harness, we need to understand whether they can use runtime state, tool responses and execution constraints to select tools, allocate resources, check prerequisites, and decide when to continue or stop.
 
 Developed by the [AgentScope](https://github.com/agentscope-ai) team, HarnessJevBench asks: **which harness decisions do existing Jev-style models handle well, and where do they still fail?** It selects decision environments around these control responsibilities and compares models on the same inputs and scoring rules, informing the choice of model and where to integrate it.
+
+> [!NOTE]
+> For agent trajectory, tool-use and response-quality evaluation, explore [OpenJudge](https://github.com/agentscope-ai/OpenJudge), our open-source framework for built-in and custom graders and quality rewards.
 
 ## HarnessJevBench Design
 
