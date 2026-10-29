@@ -114,19 +114,19 @@ Jev 类模型可以根据给定状态，为候选动作或判断输出选择与�
 
 ## Results / Leaderboard
 
-本表保留其余九个模型的历史成绩，新增 2026 年 10 月 28 日实际推理得到的三个 Blink checkpoint 成绩。
+本表保留其余九个模型的历史成绩，新增 2026 年 10 月 28 日实际推理得到的三个 Piccolo checkpoint 成绩。
 
 **[查看最新在线榜单](https://decisionplayground.agentscope.io/)**，选择 HarnessJevBench。下表为已披露的 V0.5 成绩快照。
 
 | 排名 | 模型 | Decision Accuracy ↑ | Distribution Distance (TV) ↓ |
 |---:|---|---:|---:|
 | 1 | vLLM-SR d3 (27B) | 82.37% | 0.184423 |
-| 2 | Blink (27B) | 82.03% | 0.182543 |
+| 2 | Piccolo-27B | 82.03% | 0.182543 |
 | 3 | StartLux-Decision v1.1 27B Instant | 81.36% | 0.181292 |
 | 4 | Perplexity Decider v1.2 (27B) | 78.64% | 0.267630 |
 | 5 | Mercury Decide (Inception) | 73.39% | 0.401628 |
-| 6 | Blink (9B) | 69.49% | 0.309599 |
-| 7 | Blink (4B) | 65.59% | 0.287272 |
+| 6 | Piccolo-9B | 69.49% | 0.309599 |
+| 7 | Piccolo-4B | 65.59% | 0.287272 |
 | 8 | Jev 1.14 | 64.07% | 0.275505 |
 | 9 | GPT-6 Luna Decisions | 61.19% | — |
 | 10 | Microsoft Decision-1 | 60.85% | 0.404096 |
@@ -143,7 +143,7 @@ Jev 类模型可以根据给定状态，为候选动作或判断输出选择与�
 
 ### Deploy a Model Service
 
-仓库的 [`examples/model-services/`](examples/model-services/) 提供可运行的原生模型包装服务和 API 网关。[部署指南](skills/harnessjevbench-eval/references/deployment.md)说明历史十个路由的权重、环境与启动命令，其中保留已退出榜单的 OneShot 兼容入口。Blink 使用 `Blink-4B-1028`、`Blink-9B-1028` 和 `Blink-27B-1028` 三个 checkpoint；其模型侧运行时是独立的外部依赖。
+仓库的 [`examples/model-services/`](examples/model-services/) 提供可运行的原生模型包装服务和 API 网关。[部署指南](skills/harnessjevbench-eval/references/deployment.md)说明历史十个路由的权重、环境与启动命令，其中保留已退出榜单的 OneShot 兼容入口。`Piccolo-4B`、`Piccolo-9B` 和 `Piccolo-27B` 所需的模型侧运行时是独立的外部依赖，已发布成绩的 checkpoint 来源见[复现说明](skills/harnessjevbench-eval/references/reproducibility.md#model-names-and-checkpoint-identity)。
 
 例如，设置 `OPENROUTER_API_KEY` 后，在服务终端启动 Jev 网关：
 
@@ -236,7 +236,7 @@ CUDA_VISIBLE_DEVICES=0 python -m evaluation predict --model D3-Python \
 python -m evaluation replay --predictions /path/to/predictions.jsonl --output runs/replay-example
 ```
 
-先下载并解压单独提供的 `HarnessJevBench-predictions-v0.5-12models.zip`，将 `/path/to/predictions.jsonl` 替换为解压后的预测文件路径。复算重新计算十二模型成绩，并与 `results/leaderboard.json` 核对分数和覆盖率，不调用模型。历史预测为可选材料，不包含在源码包中。
+先下载并解压单独提供的 `HarnessJevBench-predictions-v0.5-piccolo.zip`，将 `/path/to/predictions.jsonl` 替换为解压后的预测文件路径。复算重新计算十二模型成绩，并与 `results/leaderboard.json` 核对分数和覆盖率，不调用模型。历史预测为可选材料，不包含在源码包中。
 
 </details>
 

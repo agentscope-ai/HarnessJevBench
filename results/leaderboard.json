@@ -21,8 +21,8 @@
       "soft_reused": true
     },
     {
-      "model": "Blink-27B-1028",
-      "name": "Blink (27B)",
+      "model": "Piccolo-27B",
+      "name": "Piccolo-27B",
       "hard_task_score": 0.8203389830508474,
       "hard_tasks": 295,
       "hard_valid_questions": 303,
@@ -110,8 +110,8 @@
       "soft_reused": true
     },
     {
-      "model": "Blink-9B-1028",
-      "name": "Blink (9B)",
+      "model": "Piccolo-9B",
+      "name": "Piccolo-9B",
       "hard_task_score": 0.6949152542372882,
       "hard_tasks": 295,
       "hard_valid_questions": 303,
@@ -152,8 +152,8 @@
       }
     },
     {
-      "model": "Blink-4B-1028",
-      "name": "Blink (4B)",
+      "model": "Piccolo-4B",
+      "name": "Piccolo-4B",
       "hard_task_score": 0.6559322033898305,
       "hard_tasks": 295,
       "hard_valid_questions": 303,
@@ -276,5 +276,5 @@
   ],
   "soft_tv_aggregation": "Mean per-view TV (two views per task; equivalent to task mean when complete); partial valid-view mean diagnostic only and excluded from full ranking",
   "hard_aggregation": "Original-view Hard question mean per task then mean across 295; invalid outputs zero. Luna existing technical recovery included; first run preserved.",
-  "snapshot_note": "Nine previously published model rows retain their historical values. The retired OneShot row is replaced by three distinct Blink checkpoints measured with actual new inference on 2026-10-28. Measurement times differ across models; this is not a simultaneous twelve-model rerun."
+  "snapshot_note": "Nine previously published model rows retain their historical values. The retired OneShot row is replaced by three distinct Piccolo checkpoints measured with actual new inference on 2026-10-28. Measurement times differ across models; this is not a simultaneous twelve-model rerun."
 }

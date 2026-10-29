@@ -114,17 +114,17 @@ These metrics help identify model integrations worth validating further. Task su
 
 ## Results / Leaderboard
 
-**[View the live leaderboard](https://decisionplayground.agentscope.io/)** and select HarnessJevBench. The table below is the published V0.5 snapshot: nine retained historical results and three Blink checkpoints evaluated on October 28, 2026.
+**[View the live leaderboard](https://decisionplayground.agentscope.io/)** and select HarnessJevBench. The table below is the published V0.5 snapshot: nine retained historical results and three Piccolo checkpoints evaluated on October 28, 2026.
 
 | Rank | Model | Decision Accuracy ↑ | Distribution Distance (TV) ↓ |
 |---:|---|---:|---:|
 | 1 | vLLM-SR d3 (27B) | 82.37% | 0.184423 |
-| 2 | Blink (27B) | 82.03% | 0.182543 |
+| 2 | Piccolo-27B | 82.03% | 0.182543 |
 | 3 | StartLux-Decision v1.1 27B Instant | 81.36% | 0.181292 |
 | 4 | Perplexity Decider v1.2 (27B) | 78.64% | 0.267630 |
 | 5 | Mercury Decide (Inception) | 73.39% | 0.401628 |
-| 6 | Blink (9B) | 69.49% | 0.309599 |
-| 7 | Blink (4B) | 65.59% | 0.287272 |
+| 6 | Piccolo-9B | 69.49% | 0.309599 |
+| 7 | Piccolo-4B | 65.59% | 0.287272 |
 | 8 | Jev 1.14 | 64.07% | 0.275505 |
 | 9 | GPT-6 Luna Decisions | 61.19% | — |
 | 10 | Microsoft Decision-1 | 60.85% | 0.404096 |
@@ -141,7 +141,7 @@ Ranked by Decision Accuracy. “—” indicates incomplete evaluation coverage 
 
 ### Deploy a Model Service
 
-Runnable native wrappers and API gateways are included in [`examples/model-services/`](examples/model-services/). The [deployment guide](skills/harnessjevbench-eval/references/deployment.md) covers the historical ten-route examples, including the retired OneShot selector. Blink results use the `Blink-4B-1028`, `Blink-9B-1028` and `Blink-27B-1028` checkpoints; their model-owned runtime is an external dependency, separate from these examples.
+Runnable native wrappers and API gateways are included in [`examples/model-services/`](examples/model-services/). The [deployment guide](skills/harnessjevbench-eval/references/deployment.md) covers the historical ten-route examples, including the retired OneShot selector. `Piccolo-4B`, `Piccolo-9B` and `Piccolo-27B` require their model-owned runtime as an external dependency. Checkpoint identities for the published measurements are recorded in the [reproduction notes](skills/harnessjevbench-eval/references/reproducibility.md#model-names-and-checkpoint-identity).
 
 For example, after setting `OPENROUTER_API_KEY`, start the Jev gateway in a service terminal:
 
@@ -234,7 +234,7 @@ The same directory contains `protocol.json`, `receipts.jsonl`, `predictions-hard
 python -m evaluation replay --predictions /path/to/predictions.jsonl --output runs/replay-example
 ```
 
-First download and extract the separately distributed `HarnessJevBench-predictions-v0.5-12models.zip`, then replace `/path/to/predictions.jsonl` with its extracted prediction file. Replay recomputes all twelve rows and checks scores and coverage against `results/leaderboard.json`, without calling models. The historical predictions are optional and are not included in the source package.
+First download and extract the separately distributed `HarnessJevBench-predictions-v0.5-piccolo.zip`, then replace `/path/to/predictions.jsonl` with its extracted prediction file. Replay recomputes all twelve rows and checks scores and coverage against `results/leaderboard.json`, without calling models. The historical predictions are optional and are not included in the source package.
 
 </details>
 

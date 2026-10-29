@@ -18,7 +18,7 @@ python -m evaluation verify
 python -m evaluation replay --predictions /path/to/predictions.jsonl --output runs/replay-UNIQUE_RUN_ID
 ```
 
-Replace `UNIQUE_RUN_ID` with a new identifier; every output path must be absent. Replay reads the file explicitly supplied by `--predictions`, recomputes all twelve models and verifies their scores/coverage against `results/leaderboard.json`. Obtain and extract the separately distributed `HarnessJevBench-predictions-v0.5-12models.zip` first, then replace `/path/to/predictions.jsonl` with its extracted file. If that optional archive is unavailable, report the missing input rather than starting model inference. It makes no inference calls. Report it as offline scoring validation, not a new model run.
+Replace `UNIQUE_RUN_ID` with a new identifier; every output path must be absent. Replay reads the file explicitly supplied by `--predictions`, recomputes all twelve models and verifies their scores/coverage against `results/leaderboard.json`. Obtain and extract the separately distributed `HarnessJevBench-predictions-v0.5-piccolo.zip` first, then replace `/path/to/predictions.jsonl` with its extracted file. If that optional archive is unavailable, report the missing input rather than starting model inference. It makes no inference calls. Report it as offline scoring validation, not a new model run.
 
 **Score supplied predictions** when the user provides model outputs:
 
@@ -49,7 +49,7 @@ The HTTP request contains only `model`, `state` and `questions`. Python engines 
 
 ## Ten-model SystemOne examples
 
-These are the original ten deployment profiles, not the current twelve-row leaderboard roster. The retired `OneShot` selector is kept only for historical compatibility. Blink has three separate checkpoints (`Blink-4B-1028`, `Blink-9B-1028`, `Blink-27B-1028`); its model-owned runtime must be supplied separately through the existing HTTP or Python Engine contract. Do not point a Blink checkpoint at the old OneShot profile or reuse the old OneShot score.
+These are the original ten deployment profiles, not the current twelve-row leaderboard roster. The retired `OneShot` selector is kept only for historical compatibility. Piccolo is published as `Piccolo-4B`, `Piccolo-9B` and `Piccolo-27B` (checkpoint provenance is recorded in the [reproduction notes](references/reproducibility.md#model-names-and-checkpoint-identity)); its model-owned runtime must be supplied separately through the existing HTTP or Python Engine contract. Do not point a Piccolo checkpoint at the old OneShot profile or reuse the old OneShot score.
 
 The ports in `configs/models.json` are example local addresses. Launch the appropriate services before calling them, and replace endpoints with actual deployment addresses.
 

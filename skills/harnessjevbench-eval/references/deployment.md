@@ -2,9 +2,9 @@
 
 The runnable wrappers and gateways are included in [`examples/model-services/`](../../../examples/model-services/). They load native author implementations or forward to an existing service, and expose `POST /v1/systemone`. Model weights and upstream runtimes remain external dependencies. Use a separate model environment for each native model; gateways require only Python 3.10+.
 
-Scope: these are the historical ten service profiles. The current leaderboard retains nine of those models and adds three Blink checkpoints. The OneShot profile remains a compatibility example. Blink model runtimes are external dependencies and are not bundled in this release; connect an owner-provided service or Python Engine with the existing contract.
+Scope: these are the historical ten service profiles. The current leaderboard retains nine of those models and adds three Piccolo checkpoints. The OneShot profile remains a compatibility example. Piccolo model runtimes are external dependencies and are not bundled in this release; connect an owner-provided service or Python Engine with the existing contract.
 
-中文：下表保留历史十个部署配置，并非当前十二模型榜单的完整部署清单。OneShot 只保留兼容入口；三个 Blink checkpoint 的模型侧实现需由模型仓库提供，再接入现有 HTTP 或 Python Engine 接口。原生模型由包装服务加载官方实现；托管模型通过网关转发；StartLux 和历史 OneShot 先启动模型侧服务。Benchmark 客户端统一调用本机 `/v1/systemone`。权重、CUDA 环境和提供方密钥由部署方配置。
+中文：下表保留历史十个部署配置，并非当前十二模型榜单的完整部署清单。OneShot 只保留兼容入口；三个 Piccolo checkpoint 的模型侧实现需由模型仓库提供，再接入现有 HTTP 或 Python Engine 接口。原生模型由包装服务加载官方实现；托管模型通过网关转发；StartLux 和历史 OneShot 先启动模型侧服务。Benchmark 客户端统一调用本机 `/v1/systemone`。权重、CUDA 环境和提供方密钥由部署方配置。
 
 ## 1. Prepare the service configuration
 
@@ -101,7 +101,7 @@ The model directory must match the revision and file hashes recorded in the prof
 
 ## 5. Historical OneShot route
 
-This selector identifies the old 27B checkpoint in the published snapshot. New Blink checkpoints are separate model identities. Obtain the checkpoint and matching backend from the model owner, start its native decision service, then configure its complete SystemOne URLs. The original Hard profile used custom PPU vLLM; Soft used HF Torch SDPA + FLA. Those upstream runtimes are not supplied by this example.
+This legacy selector identifies the retired OneShot checkpoint, which is no longer in the current published table. New Piccolo checkpoints are separate model identities. Obtain the checkpoint and matching backend from the model owner, start its native decision service, then configure its complete SystemOne URLs. The original Hard profile used custom PPU vLLM; Soft used HF Torch SDPA + FLA. Those upstream runtimes are not supplied by this example.
 
 ```bash
 # Set ONESHOT_HARD_ENDPOINT and ONESHOT_SOFT_ENDPOINT to running owner services first.

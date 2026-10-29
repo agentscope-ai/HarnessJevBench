@@ -21,13 +21,27 @@ The two fixed distribution views reorder finite weighted worlds in the final sta
 
 ## Saved predictions and the published table
 
-The optional `HarnessJevBench-predictions-v0.5-12models.zip` contains `predictions.jsonl` with twelve JSONL lines, one per model. It is distributed separately from the source package; its manifest records the prediction, task-data and leaderboard hashes. Each line has `model`, `hard` (295 task records / 303 questions) and `soft` (60 view records). View records include `task_id`, `validation_view`, `visible_input_sha256` and `observation`. Reference labels are read from the task file.
+The optional `HarnessJevBench-predictions-v0.5-piccolo.zip` contains `predictions.jsonl` with twelve JSONL lines, one per model. It is distributed separately from the source package; its manifest records the prediction, task-data and leaderboard hashes. Each line has `model`, `hard` (295 task records / 303 questions) and `soft` (60 view records). View records include `task_id`, `validation_view`, `visible_input_sha256` and `observation`. Reference labels are read from the task file.
 
 Failures remain records with non-valid statuses. Luna has 60 saved distribution-view rows, of which 46 are valid. The README therefore shows “—” for its Distribution Distance; the original valid-only value remains available in the result file. Saved row counts do not establish successful coverage. These files contain normalized historical predictions rather than full HTTP logs.
 
-[`results/leaderboard.json`](../../../results/leaderboard.json) stores the fixed V0.5 historical scores. Its rows were measured at different times: nine historical rows are retained unchanged, and the three distinct Blink checkpoints were evaluated with actual new inference on 2026-10-28. The old OneShot row is retired rather than renamed. Each Blink row records its checkpoint/config hashes, runtime and inference controls. All three have 303/303 valid definite-answer questions and 60/60 valid distribution views. README ranks use Decision Accuracy, with shared ranks for ties. Use `replay --predictions /path/to/predictions.jsonl` for the extracted twelve-model bundle; `score` expects one model's individual task/view rows.
+[`results/leaderboard.json`](../../../results/leaderboard.json) stores the fixed V0.5 historical scores. Its rows were measured at different times: nine historical rows are retained unchanged, and the three distinct Piccolo checkpoints were evaluated with actual new inference on 2026-10-28. The old OneShot row is retired rather than renamed. Each Piccolo row records its checkpoint/config hashes, runtime and inference controls. All three have 303/303 valid definite-answer questions and 60/60 valid distribution views. README ranks use Decision Accuracy, with shared ranks for ties. Use `replay --predictions /path/to/predictions.jsonl` for the extracted twelve-model bundle; `score` expects one model's individual task/view rows.
 
-The previous ten-model archive is a different historical snapshot and cannot reproduce the current twelve-row table. The three Blink rows use the measured rerun outputs, not the training team's baseline metrics.
+The previous ten-model archive is a different historical snapshot and cannot reproduce the current twelve-row table. The three Piccolo rows use the measured rerun outputs, not the training team's baseline metrics.
+
+## Model names and checkpoint identity
+
+Public model IDs and display names use **Piccolo-27B**, **Piccolo-9B** and **Piccolo-4B**. The original inference receipts and checkpoint directories used the following names:
+
+| Published model ID | Checkpoint revision in original receipts |
+|---|---|
+| `Piccolo-27B` | `Blink-27B-1028` |
+| `Piccolo-9B` | `Blink-9B-1028` |
+| `Piccolo-4B` | `Blink-4B-1028` |
+
+This is a naming update: measured scores, checkpoint/config hashes, runtime, inference controls and the 2026-10-28 measurement date are unchanged. `checkpoint_revision` retains the original identifier for traceability. The matching optional replay archive uses the new public model IDs; older archives retain their historical IDs.
+
+中文：三个公开模型名统一为 Piccolo-27B、Piccolo-9B、Piccolo-4B；checkpoint 标识保留原始回执中的名称。本次只调整命名，不改变权重、预测或成绩，也未重新调用模型。
 
 ## Construction and evaluation scope
 
@@ -42,7 +56,7 @@ Distribution references describe explicit finite weighted worlds. They do not es
 ## Historical inference protocols
 
 - The four hosted API profiles used concurrency 4 for Decision Accuracy and 1 for Distribution Distance. Other client profiles generally use concurrency 1. Provider IDs do not prove unchanged hidden weights.
-- Historical OneShot Decision Accuracy used custom PPU vLLM; Distribution Distance used HF Torch SDPA + FLA. Numerical equivalence is not established. The later HF run explicitly changes the former backend; old and new Blink checkpoints are separate identities.
+- Historical OneShot Decision Accuracy used custom PPU vLLM; Distribution Distance used HF Torch SDPA + FLA. Numerical equivalence is not established. The later HF run explicitly changes the former backend; the retired OneShot checkpoint and current Piccolo checkpoints are separate identities.
 - Model-specific prompting, readout, calibration, context limits, attention and thinking controls belong to the model service. Included wrappers preserve the historical implementations; weights, full upstream runtimes and private settings are external dependencies.
 - Resume verifies inputs, configuration and implementation identities and preserves recorded failures. Keep raw responses and coverage. No extra model-probability calibration is applied by the Benchmark client.
 - Report benchmark version, publication revision, record hash, model/checkpoint revision, backend/runtime, inference controls, measurement date and coverage with each fresh result.
@@ -60,5 +74,7 @@ Publication **0.5.13** simplifies the release file layout with clearer leaderboa
 Publication **0.5.14** moves historical predictions to a separate optional archive. `replay` requires an explicit `--predictions` file. The source test suite and CI use generated reference-answer fixtures instead of historical model outputs. Full historical replay is verified separately against the optional archive. Data, reference labels, frozen scorer, inference implementations and published leaderboard values remain unchanged.
 
 Publication **0.5.15** replaces the retired OneShot leaderboard row with measured Blink 4B, 9B and 27B results, updates the bilingual tables/model count and supplies a matching optional twelve-model replay archive. The other nine historical rows, task data, scorer, inference client and model-service implementations are unchanged. Unpublished local model integration changes remain excluded.
+
+Publication **0.5.17** renames the three public Blink model IDs/display names to Piccolo-27B, Piccolo-9B and Piccolo-4B, with original checkpoint identities preserved. README tables, model references and the optional replay archive follow the new names. Published scores, all prediction values, data and evaluation/model-service code are unchanged.
 
 Data use the [MIT license](../../../LICENSE.md#benchmark-data--mit). Code/documentation licensing remains as recorded in [LICENSE.md](../../../LICENSE.md); upstream models and dependencies keep their own terms.
